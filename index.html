@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Калькулятор</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="calc">
+        <textarea class="input" id="textField" placeholder="Введите пример " wrap="soft" onkeydown=""></textarea>
+        <div class="item back" onclick="deleteLastDigit()">&larr;</div>
+        <div class="item clean" onclick="cleanField()">C</div>
+        <div class="item" onclick="addDigit('+')">+</div>
+        <div class="item" onclick="addDigit('-')">-</div>
+        <div class="item" onclick="addDigit('&times')">&times;</div>
+        <div class="item" onclick="addDigit('&divide')">&divide;</div>
+        <div class="item" onclick="addDigit(7)">7</div>
+        <div class="item" onclick="addDigit(8)">8</div>
+        <div class="item" onclick="addDigit(9)">9</div>
+        <div class="item" onclick="addDigit('(')">(</div>
+        <div class="item" onclick="addDigit(4) ">4</div>
+        <div class="item" onclick="addDigit(5) ">5</div>
+        <div class="item" onclick="addDigit(6) ">6</div>
+        <div class="item" onclick="addDigit(')')">)</div>
+        <div class="item" onclick="addDigit(1) ">1</div>
+        <div class="item" onclick="addDigit(2) ">2</div>
+        <div class="item" onclick="addDigit(3) ">3</div>
+        <div class="item equal" onclick="equal()">=</div>
+        <div class="item zero" onclick="addDigit(0)">0</div>
+        <div class="item" onclick="addDigit('.')">.</div>
+    </div>
+</body>
+
+</html>
