@@ -10,7 +10,7 @@ body {
     background-color: rgb(37, 37, 37);
     padding: 4px;
     border-radius: 5px;
-    max-width: 350px;
+    max-width: 600px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -43,12 +43,13 @@ textarea {
 
 .back {
     grid-column: 1/3;
+    background-color: Yellow;
+    color: navy;
 }
 
 .clean {
     grid-column: 3/-1;
-    background-color: navy;
-    color: yellow;
+    background-color: YellowGreen;
 }
 
 .equal {
