@@ -6,19 +6,18 @@ const COLORS = { NUMBER: "Lime", CLEAN: "YellowGreen", BACK: "Yellow", EQUAL: "G
 
 
 function addDigit(value) {
-    changeButtonColor("button" + value, COLORS["PUSHED_NUMBER"], COLORS["NUMBER"], 150);
+    changeElementColor("button" + value, COLORS["PUSHED_NUMBER"], COLORS["NUMBER"], 150);
     var elem = document.getElementById(textFieldID);
     elem.value += value;
 }
 
-
 function cleanField() {
-    changeButtonColor("clean", COLORS["PUSHED_CLEAN"], COLORS["CLEAN"], 150);
+    changeElementColor("clean", COLORS["PUSHED_CLEAN"], COLORS["CLEAN"], 150);
     document.getElementById(textFieldID).value = "";
 }
 
 function deleteLastDigit() {
-    changeButtonColor("back", COLORS["PUSHED_BACK"], COLORS["BACK"], 150);
+    changeElementColor("back", COLORS["PUSHED_BACK"], COLORS["BACK"], 150);
     var textField = document.getElementById(textFieldID);
     if (textField.value.length > 0) {
         textField.value =
@@ -26,30 +25,17 @@ function deleteLastDigit() {
     }
 }
 
-
 function equal() {
-    changeButtonColor("equal", COLORS["PUSHED_EQUAL"], COLORS["EQUAL"], 150);
+    changeElementColor("equal", COLORS["PUSHED_EQUAL"], COLORS["EQUAL"], 150);
     var textField = document.getElementById(textFieldID);
     var formattedValue = textField.value.replaceAll('×', '*').replaceAll('÷', '/');
-    if (checkTextField(formattedValue)) {
+    try {
         textField.value = eval(formattedValue);
+    } catch (err) {
+        changeElementColor("checkKey", "red", "darkcyan", 150);
+        console.error(err.message);
     }
 }
-
-function checkTextField(str) {
-    if (typeof str != "string") {
-        alert("Что ты мне передал????");
-        return false;
-    }
-    if (str.match("(?!.*[\\+\\*\\/\\.]{2})(?!.*[-]{2})^[+-]?\\d+[\\d.\\/\\*\\-\\+]*$")) {
-        return true;
-    } else {
-        // checkKey.style.background = "red"; // менять цвет фона при неправильном выражении
-        console.log("\"" + str + "\" is not a valid math case.");
-        return false;
-    }
-}
-
 
 function handleKeydown(key) {
     console.log("Нажата клавиша ", key.key + ". Её код", key.code);
@@ -105,8 +91,8 @@ function handleKeydown(key) {
     }
 }
 
-function changeButtonColor(buttonID, newColor, prevColor, timeForNewColor) {
-    var elem = document.getElementById(buttonID);
+function changeElementColor(elemID, newColor, prevColor, timeForNewColor) {
+    var elem = document.getElementById(elemID);
     elem.style.background = newColor;
     setTimeout(function(prevColor) { elem.style.background = prevColor }, timeForNewColor, prevColor);
 }
