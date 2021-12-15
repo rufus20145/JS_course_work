@@ -1,4 +1,16 @@
 checkKey.onkeydown = handleKeydown;
+checkKey.onmousedown = function (event) {
+    console.log(event);
+    // console.log("pageX =", event.pageX, "pageY =", event.pageY);
+    // console.log("screenX =", event.screenX, "screenY =", event.screenY);
+    // console.log("clientX =", event.clientX, "clientY =", event.clientY);
+    // console.log("offsetX =", event.offsetX, "offsetY =", event.offsetY);
+
+
+
+};
+
+
 
 // блок констант
 const textFieldID = "textField"
