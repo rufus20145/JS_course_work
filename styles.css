@@ -35,6 +35,11 @@ textarea {
     border-radius: 5px;
 }
 
+.plus {
+    grid-column: 1;
+    grid-row: 3/5;
+}
+
 .input {
     grid-column: 1/-1;
     padding: 1px;
@@ -53,7 +58,7 @@ textarea {
 
 .equal {
     grid-column: 4;
-    grid-row: 6/8;
+    grid-row: 7/9;
     background-color: gray;
 }
 

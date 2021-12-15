@@ -1,36 +1,25 @@
 checkKey.onkeydown = handleKeydown;
-checkKey.onmousedown = function (event) {
-    console.log(event);
-    // console.log("pageX =", event.pageX, "pageY =", event.pageY);
-    // console.log("screenX =", event.screenX, "screenY =", event.screenY);
-    // console.log("clientX =", event.clientX, "clientY =", event.clientY);
-    // console.log("offsetX =", event.offsetX, "offsetY =", event.offsetY);
-
-
-
-};
 
 
 
 // блок констант
 const textFieldID = "textField"
-const COLORS = { NUMBER: "Lime", CLEAN: "YellowGreen", BACK: "Yellow", EQUAL: "Gray", PUSHED_NUMBER: "#26ff006c", PUSHED_CLEAN: "#9acd326c", PUSHED_BACK: "#ffff006c", PUSHED_EQUAL: "#8080806c" };
+const COLORS = { NUMBER: "Lime", CLEAN: "YellowGreen", BACK: "Yellow", EQUAL: "Gray" };
 
 
 function addDigit(value) {
     makeButtonPushed("button" + value, 150);
-    // changeElementColor("button" + value, COLORS["PUSHED_NUMBER"], COLORS["NUMBER"], 150);
     var elem = document.getElementById(textFieldID);
     elem.value += value;
 }
 
 function cleanField() {
-    changeElementColor("clean", COLORS["PUSHED_CLEAN"], COLORS["CLEAN"], 150);
+    makeButtonPushed("clean", 150);
     document.getElementById(textFieldID).value = "";
 }
 
 function deleteLastDigit() {
-    changeElementColor("back", COLORS["PUSHED_BACK"], COLORS["BACK"], 150);
+    makeButtonPushed("back", 150);
     var textField = document.getElementById(textFieldID);
     if (textField.value.length > 0) {
         textField.value =
@@ -38,10 +27,30 @@ function deleteLastDigit() {
     }
 }
 
-function equal() {
-    changeElementColor("equal", COLORS["PUSHED_EQUAL"], COLORS["EQUAL"], 150);
+function calculateFactorial() {
+    makeButtonPushed("button!", 150);
     var textField = document.getElementById(textFieldID);
-    var formattedValue = textField.value.replaceAll('×', '*').replaceAll('÷', '/');
+    if (textField.value.match("^[-+]?\\d+$")) {
+        var res = 1;
+        for (var i = 2; i <= Number(textField.value); i++) {
+            res *= i;
+        }
+        textField.value = res;
+    } else {
+        alert("Невозможно посчитать факториал для данного ввода.");
+    }
+}
+
+function exponentiate() {
+    makeButtonPushed("exponentiate", 150)
+    var textField = document.getElementById(textFieldID);
+    textField.value += "^";
+}
+
+function equal() {
+    makeButtonPushed("equal", 150);
+    var textField = document.getElementById(textFieldID);
+    var formattedValue = textField.value.replaceAll("×", "*").replaceAll("÷", "/").replaceAll("^", "**");
     try {
         textField.value = eval(formattedValue);
     } catch (err) {
@@ -66,16 +75,13 @@ function handleKeydown(key) {
                 addDigit("×");
                 break;
             case "^":
-                console.error("Will be added in future.");
-                alert("Will be added in future.");
+                exponentiate();
                 break;
             case "%":
-                console.error("Will be added in future.");
-                alert("Will be added in future.");
+                addDigit("%");
                 break;
             case "!":
-                console.error("Will be added in future.");
-                alert("Will be added in future.");
+                calculateFactorial();
                 break;
             case "(":
                 addDigit(key.key);
@@ -98,7 +104,7 @@ function handleKeydown(key) {
             default:
                 break;
         }
-        if (!isNaN(key.key)) { //точная проверка на присутствие только числа в строке
+        if (!isNaN(key.key)) { // проверка на присутствие только числа в строке
             addDigit(key.key)
         }
     }
@@ -110,7 +116,6 @@ function changeElementColor(elemID, newColor, prevColor, timeForNewColor) {
     setTimeout(function (prevColor) { elem.style.background = prevColor }, timeForNewColor, prevColor);
 }
 
-// todo переделать все нажатия таким методом
 function makeButtonPushed(elemID, timeForPushed) {
     var elem = document.getElementById(elemID);
     elem.style.opacity = 0.5;
