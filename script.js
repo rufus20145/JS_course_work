@@ -1,4 +1,16 @@
 checkKey.onkeydown = handleKeydown;
+checkKey.onmousedown = function (event) {
+    console.log(event);
+    // console.log("pageX =", event.pageX, "pageY =", event.pageY);
+    // console.log("screenX =", event.screenX, "screenY =", event.screenY);
+    // console.log("clientX =", event.clientX, "clientY =", event.clientY);
+    // console.log("offsetX =", event.offsetX, "offsetY =", event.offsetY);
+
+
+
+};
+
+
 
 // блок констант
 const textFieldID = "textField"
@@ -94,5 +106,5 @@ function handleKeydown(key) {
 function changeElementColor(elemID, newColor, prevColor, timeForNewColor) {
     var elem = document.getElementById(elemID);
     elem.style.background = newColor;
-    setTimeout(function(prevColor) { elem.style.background = prevColor }, timeForNewColor, prevColor);
+    setTimeout(function (prevColor) { elem.style.background = prevColor }, timeForNewColor, prevColor);
 }
