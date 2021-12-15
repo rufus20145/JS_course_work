@@ -6,7 +6,8 @@ const COLORS = { NUMBER: "Lime", CLEAN: "YellowGreen", BACK: "Yellow", EQUAL: "G
 
 
 function addDigit(value) {
-    changeElementColor("button" + value, COLORS["PUSHED_NUMBER"], COLORS["NUMBER"], 150);
+    makeButtonPushed("button" + value, 150);
+    // changeElementColor("button" + value, COLORS["PUSHED_NUMBER"], COLORS["NUMBER"], 150);
     var elem = document.getElementById(textFieldID);
     elem.value += value;
 }
@@ -94,5 +95,12 @@ function handleKeydown(key) {
 function changeElementColor(elemID, newColor, prevColor, timeForNewColor) {
     var elem = document.getElementById(elemID);
     elem.style.background = newColor;
-    setTimeout(function(prevColor) { elem.style.background = prevColor }, timeForNewColor, prevColor);
+    setTimeout(function (prevColor) { elem.style.background = prevColor }, timeForNewColor, prevColor);
+}
+
+// todo переделать все нажатия таким методом
+function makeButtonPushed(elemID, timeForPushed) {
+    var elem = document.getElementById(elemID);
+    elem.style.opacity = 0.5;
+    setTimeout(function () { elem.style.opacity = 1 }, timeForPushed,);
 }
